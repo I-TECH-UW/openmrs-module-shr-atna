@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/SEDISH/openmrs-module-shr-atna.svg?branch=master)](https://travis-ci.org/SEDISH/openmrs-module-shr-atna)
+
 openmrs-module-basicmodule
 ==========================
 
