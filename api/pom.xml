@@ -137,10 +137,15 @@
 			<id>dcm4che</id>
 			<url>https://dcm4che.org/maven2</url>
 		</repository>
+
 		<repository>
 			<id>santesuite-main</id>
-			<url>https://santesuite.org/mvn</url>
+			<url>http://santesuite.org/mvn</url>
 			<name>SanteSuite</name>
+		</repository>
+		<repository>
+			<id>marc-te-main</id>
+			<url>http://te.marc-hi.ca/mvn</url>
 		</repository>
 	</repositories>
 	
