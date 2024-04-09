@@ -1,126 +1,156 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 		xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>org.openmrs.module</groupId>
+		<artifactId>shr-atna</artifactId>
+		<version>1.1.0</version>
+	</parent>
 
-	<groupId>org.openmrs.module</groupId>
-	<artifactId>shr-atna</artifactId>
-	<version>1.0.1-SNAPSHOT</version>
-	<packaging>pom</packaging>
-	<name>SHR ATNA Module</name>
-	<description>OpenSHR ATNA Code</description>
+	<artifactId>shr-atna-api</artifactId>
+	<packaging>jar</packaging>
+	<name>SHR ATNA Module API</name>
+	<description>API project for SHR ATNA Module</description>
 
-	<url>https://wiki.openmrs.org/x/FQ4z</url>
+	<dependencies>
+		<!-- 
+		Add other dependencies from lib:
+		<dependency>
+			<groupId>org.other.library</groupId>
+			<artifactId>library-name</artifactId>
+		</dependency>
+		-->
+		
+		<!-- Begin OpenMRS core -->
+		<dependency>
+			<groupId>org.openmrs.api</groupId>
+			<artifactId>openmrs-api</artifactId>
+            <scope>provided</scope>
+			<type>jar</type>
+			<exclusions>
+				<exclusion>
+					<artifactId>slf4j-api</artifactId>
+					<groupId>org.slf4j</groupId>
+				</exclusion>
+                <exclusion>
+                    <artifactId>activation</artifactId>
+                    <groupId>javax.activation</groupId>
+                </exclusion>
+			</exclusions>
+		</dependency>
 
-	<scm>
-		<connection>scm:git@github.com:jembi/openmrs-module-shr-atna.git</connection>
-		<developerConnection>scm:git@github.com:jembi/openmrs-module-shr-atna.git</developerConnection>
-		<url>https://github.com/jembi/openmrs-module-shr-atna.git</url>
-	</scm>
+		<dependency>
+			<groupId>org.openmrs.web</groupId>
+			<artifactId>openmrs-web</artifactId>
+			<type>jar</type>
+		</dependency>
 
-	<modules>
-		<module>api</module>
-		<module>omod</module>
-	</modules>
+		<dependency>
+			<groupId>org.openmrs.api</groupId>
+			<artifactId>openmrs-api</artifactId>
+			<type>test-jar</type>
+			<scope>test</scope>
+		</dependency>
 
-	<dependencyManagement>
-		<dependencies>
-			<!--
-			Libraries from lib to add as dependencies with compile or runtime scope:
-			
-				
-			Find matching dependencies in maven central repository.
-			<dependency>
-				<groupId>org.other.library</groupId>
-				<artifactId>library-name</artifactId>
-				<version>library.version</version>
-				<scope>compile</scope>
-			</dependency>
-			-->
-			
-			<dependency>
-				<groupId>org.openmrs.api</groupId>
-				<artifactId>openmrs-api</artifactId>
-				<version>${openMRSVersion}</version>
-				<type>jar</type>
-				<scope>provided</scope>
-			</dependency>
-			<dependency>
-				<groupId>org.openmrs.api</groupId>
-				<artifactId>openmrs-api</artifactId>
-				<version>${openMRSVersion}</version>
-				<type>test-jar</type>
-				<scope>test</scope>
-			</dependency>
-			<dependency>
-				<groupId>org.openmrs.web</groupId>
-				<artifactId>openmrs-web</artifactId>
-				<version>${openMRSVersion}</version>
-				<type>jar</type>
-				<scope>provided</scope>
-			</dependency>
-			<dependency>
-				<groupId>org.openmrs.web</groupId>
-				<artifactId>openmrs-web</artifactId>
-				<version>${openMRSVersion}</version>
-				<type>test-jar</type>
-				<scope>test</scope>
-			</dependency>
-			<dependency>
-				<groupId>org.openmrs.test</groupId>
-				<artifactId>openmrs-test</artifactId>
-				<version>${openMRSVersion}</version>
-				<type>pom</type>
-				<scope>test</scope>
-			</dependency>
-		</dependencies>
-	</dependencyManagement>
+		<dependency>
+			<groupId>org.openmrs.web</groupId>
+			<artifactId>openmrs-web</artifactId>
+			<type>test-jar</type>
+			<scope>test</scope>
+		</dependency>
 
-	<properties>
-		<openMRSVersion>2.0.5</openMRSVersion>
-	</properties>
+		<dependency>
+			<groupId>org.openmrs.test</groupId>
+			<artifactId>openmrs-test</artifactId>
+			<type>pom</type>
+			<scope>test</scope>
+			<exclusions>
+				<exclusion>
+					<artifactId>slf4j-api</artifactId>
+					<groupId>org.slf4j</groupId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.dcm4che</groupId>
+			<artifactId>dcm4che-audit</artifactId>
+			<version>3.3.6</version>
+			<exclusions>
+				<exclusion>
+					<artifactId>activation</artifactId>
+					<groupId>javax.activation</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>jaxb-api</artifactId>
+					<groupId>javax.xml.bind</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>stax-api</artifactId>
+					<groupId>javax.xml.stream</groupId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>org.dcm4che</groupId>
+			<artifactId>dcm4che-net-audit</artifactId>
+			<version>3.3.6</version>
+			<exclusions>
+				<exclusion>
+					<artifactId>slf4j-api</artifactId>
+					<groupId>org.slf4j</groupId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>org.marc.everest</groupId>
+			<artifactId>everest-core</artifactId>
+			<version>1.1.0</version>
+		</dependency><!-- 
+		<dependency>
+			<groupId>org.marc.shic</groupId>
+			<artifactId>shic-atna</artifactId>
+			<version>1.0.6</version>
+		</dependency>-->
 
+	</dependencies>
+	
 	<build>
-		<pluginManagement>
-			<plugins>
-				<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-compiler-plugin</artifactId>
-					<configuration>
-						<target>1.8</target>
-						<source>1.8</source>
-					</configuration>
-				</plugin>
-				<plugin>
-					<groupId>org.openmrs.maven.plugins</groupId>
-					<artifactId>maven-openmrs-plugin</artifactId>
-					<version>1.0.1</version>
-				</plugin>
-				<plugin>
-					<groupId>org.codehaus.mojo</groupId>
-					<artifactId>versions-maven-plugin</artifactId>
-					<version>2.2</version>
-				</plugin>
-			</plugins>
-		</pluginManagement>
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+				<filtering>true</filtering>
+			</resource>
+		</resources>
+
+		<testResources>
+			<testResource>
+				<directory>src/test/resources</directory>
+				<filtering>true</filtering>
+			</testResource>
+		</testResources>
 	</build>
 
 	<repositories>
 		<repository>
-			<id>openmrs-repo</id>
-			<name>OpenMRS Nexus Repository</name>
-			<url>https://mavenrepo.openmrs.org/nexus/content/repositories/public</url>
+			<id>OscarMcMaster</id>
+			<url>https://oscarmcmaster.sourceforge.net/m2/</url>
+		</repository>
+
+		<repository>
+			<id>dcm4che</id>
+			<url>https://www.dcm4che.org/maven2/</url>
+		</repository>
+
+		<repository>
+			<id>santesuite-main</id>
+			<url>https://santesuite.org/mvn</url>
+			<name>SanteSuite</name>
+		</repository>
+		<repository>
+			<id>marc-te-main</id>
+			<url>https://te.marc-hi.ca/mvn</url>
 		</repository>
 	</repositories>
-
-	<pluginRepositories>
-		<pluginRepository>
-			<id>openmrs-repo</id>
-			<name>OpenMRS Nexus Repository</name>
-			<url>https://mavenrepo.openmrs.org/nexus/content/repositories/public</url>
-			<snapshots>
-				<enabled>false</enabled>
-			</snapshots>
-		</pluginRepository>
-	</pluginRepositories>
-
+	
 </project>
